@@ -15,6 +15,11 @@
         "onLanguage:jsonc",
         "onLanguage:plaintext"
     ],
+    "icon": "images/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yzpTsubasa/vscode-json-formatter.git"
+	},
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
