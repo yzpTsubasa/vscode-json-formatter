@@ -1,5 +1,6 @@
 'use strict';
 
+import { type } from 'os';
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -44,9 +45,14 @@ export function activate(context: vscode.ExtensionContext) {
             throw new Error("workspacePathが不明です。");
         }
         let rawText: string = document.getText(fullRange);
-        config = vscode.workspace.getConfiguration("", vscode.Uri.parse(workspacePath));
+        config = vscode.workspace.getConfiguration("", document.uri);
         let data = JSON.parse(rawText);
-        let space = config.get("editor.tabSize");
+        let space = 0;
+        if (vscode.window.activeTextEditor.document === document && typeof vscode.window.activeTextEditor.options.tabSize === 'number') {
+            space = vscode.window.activeTextEditor.options.tabSize;
+        } else {
+            space = config.get("editor.tabSize");
+        }
         let sortKeys = config.get("tsubasa-json-formatter.sortKeys");
         let keepElementsOfArrayInLine = config.get("tsubasa-json-formatter.keepElementsOfArrayInLine");
         let keepKeysOfObjectInLine = config.get("tsubasa-json-formatter.keepKeysOfObjectInLine");
