@@ -63,7 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
         let result = "";
         space = space === undefined ? 2 : space;
         depth = depth === undefined ? 0 : depth;
-        
+
         /** key: value 是否换行 */
         let wrapKV = false;
         /** 对象属性 是否换行 */
@@ -168,7 +168,7 @@ export function activate(context: vscode.ExtensionContext) {
         } else if (typeof value === "number" || typeof value === "boolean") {
             result += value;
         } else if (typeof value === "string") {
-            result += `"${value}"`;
+            result += `"${escapeString(value)}"`;
         }
         if (value instanceof Array) {
             if (wrapKV) {
@@ -185,6 +185,18 @@ export function activate(context: vscode.ExtensionContext) {
         }
         return result;
     }
-}
 
+    function escapeString(str) {
+        return str
+            .replace(/\\/g, '\\\\')
+            .replace(/\"/g, '\\\"')
+            .replace(/\//g, '\\/')
+            // *注: [\b] 是匹配backspace, \b 是匹配边界
+            .replace(/[\b]/g, '\\b')
+            .replace(/\f/g, '\\f')
+            .replace(/\n/g, '\\n')
+            .replace(/\r/g, '\\r')
+            .replace(/\t/g, '\\t');
+    };
+}
 
