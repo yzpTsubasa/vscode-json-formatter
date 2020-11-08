@@ -190,7 +190,7 @@ export function activate(context: vscode.ExtensionContext) {
         return str
             .replace(/\\/g, '\\\\')
             .replace(/\"/g, '\\\"')
-            .replace(/\//g, '\\/')
+            // .replace(/\//g, '\\/')
             // *注: [\b] 是匹配backspace, \b 是匹配边界
             .replace(/[\b]/g, '\\b')
             .replace(/\f/g, '\\f')
