@@ -1,3 +1,7 @@
+## 0.0.5 [2020-11-08]
+
+- New icon
+
 ## 0.0.4 [2020-11-08]
 
 - Optimized: prefer activeTextEditor.options.tabSize

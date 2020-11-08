@@ -2,7 +2,7 @@
     "name": "tsubasa-json-formatter",
     "displayName": "Tsubasa JSON Formatter",
     "description": "",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "TsubasaYeung",
     "engines": {
         "vscode": "^1.45.0"
